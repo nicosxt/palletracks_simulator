@@ -9,7 +9,6 @@ public class PalletRackObject : MonoBehaviour
     private float snapScaleInterval = 0.2f;
     public GameObject currentlyHovering = null;//object currently hovered by ray selectors
     public TextMeshPro currentlyHoveringText;
-    bool hoveringL, hoveringR;
     public GameObject previewObj;
     public List<PR_Collider> pr_Colliders = new List<PR_Collider>();
 
@@ -21,12 +20,12 @@ public class PalletRackObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //the rayObjR and rayObjL are always on since they're picked in OnTriggerStay
+        //the raycastingObjR and raycastingObjL are always on since they're picked in OnTriggerStay
         //but currentlyHovering are nullified when hoveringL or hoveringR is false
-        if(hoveringR && PalletRackController.i.rayObjR != null){
-            currentlyHovering = PalletRackController.i.rayObjR;
-        }else if(hoveringL && PalletRackController.i.rayObjL != null){
-            currentlyHovering = PalletRackController.i.rayObjL;
+        if(PalletRackController.i.raycastingObjR != null){
+            currentlyHovering = PalletRackController.i.raycastingObjR;
+        }else if(PalletRackController.i.raycastingObjL != null){
+            currentlyHovering = PalletRackController.i.raycastingObjL;
         }else{
             currentlyHovering = null;
         }
@@ -58,25 +57,5 @@ public class PalletRackObject : MonoBehaviour
     float SnapToInterval(float value, float interval)
     {
         return Mathf.Round(value / interval) * interval;
-    }
-
-    public void LeftRayEnter(){
-        //Debug.Log("LeftRayEnter");
-        hoveringL = true;
-    }
-
-    public void LeftRayExit(){
-        //Debug.Log("LeftRayExit");
-        hoveringL = false;
-    }
-
-    public void RightRayEnter(){
-        //Debug.Log("RightRayEnter");
-        hoveringR = true;
-    }
-
-    public void RightRayExit(){
-        //Debug.Log("RightRayExit");
-        hoveringR = false;
     }
 }

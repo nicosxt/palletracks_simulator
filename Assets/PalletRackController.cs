@@ -16,7 +16,8 @@ public class PalletRackController : MonoBehaviour
     //public GameObject currentInteractingObject;
     public GameObject ogPalletRack;
     public GameObject reticleLeft, reticleRight;
-    public GameObject rayObjL, rayObjR;//currently hovering object
+    public PR_RayInteractor rayInteractorL, rayInteractorR;
+    public GameObject raycastingObjL, raycastingObjR;//currently hovering object
     
     //public FadeMaterial fadeMaterialEnvironmentController;
     // Start is called before the first frame update
@@ -30,5 +31,7 @@ public class PalletRackController : MonoBehaviour
     {
         
     }
+
+    //check the state of rayInteractorL and rayInteractorR
 
 }

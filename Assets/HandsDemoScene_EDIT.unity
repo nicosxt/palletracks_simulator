@@ -1453,8 +1453,10 @@ MonoBehaviour:
   ogPalletRack: {fileID: 786869677620814895}
   reticleLeft: {fileID: 75052008}
   reticleRight: {fileID: 1288200770}
-  rayObjL: {fileID: 0}
-  rayObjR: {fileID: 0}
+  rayInteractorL: {fileID: 1160444129}
+  rayInteractorR: {fileID: 1757541373}
+  raycastingObjL: {fileID: 0}
+  raycastingObjR: {fileID: 0}
 --- !u!4 &307144006
 Transform:
   m_ObjectHideFlags: 0
@@ -2713,12 +2715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 677dc637825d7e744ad28f8b1fd80f32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  palletRackObject: {fileID: 4373237222750262845}
-  attachmentStatus: 
   attachmentPoint: {fileID: 5046064063736993818}
-  previewObj: {fileID: 0}
-  attachedObj: {fileID: 0}
-  debugText: {fileID: 0}
 --- !u!1 &659511933
 GameObject:
   m_ObjectHideFlags: 0
@@ -5219,6 +5216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugText: {fileID: 2021012946}
   direction: L
+  isStayingInObject: 0
 --- !u!1 &1170633772
 GameObject:
   m_ObjectHideFlags: 0
@@ -6210,7 +6208,7 @@ GameObject:
   - component: {fileID: 1515179843}
   - component: {fileID: 1515179845}
   m_Layer: 0
-  m_Name: currentlyHovering
+  m_Name: Hover Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7012,12 +7010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 677dc637825d7e744ad28f8b1fd80f32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  palletRackObject: {fileID: 4373237222750262845}
-  attachmentStatus: 
   attachmentPoint: {fileID: 773045264}
-  previewObj: {fileID: 0}
-  attachedObj: {fileID: 0}
-  debugText: {fileID: 0}
 --- !u!1 &1618199119
 GameObject:
   m_ObjectHideFlags: 0
@@ -8006,6 +7999,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugText: {fileID: 1594146950}
   direction: R
+  isStayingInObject: 0
 --- !u!114 &1757541374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8142,12 +8136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 677dc637825d7e744ad28f8b1fd80f32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  palletRackObject: {fileID: 4373237222750262845}
-  attachmentStatus: 
   attachmentPoint: {fileID: 871577087}
-  previewObj: {fileID: 0}
-  attachedObj: {fileID: 0}
-  debugText: {fileID: 0}
 --- !u!1 &1775173753
 GameObject:
   m_ObjectHideFlags: 0
@@ -8266,12 +8255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 677dc637825d7e744ad28f8b1fd80f32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  palletRackObject: {fileID: 4373237222750262845}
-  attachmentStatus: 
   attachmentPoint: {fileID: 1630462741}
-  previewObj: {fileID: 0}
-  attachedObj: {fileID: 0}
-  debugText: {fileID: 0}
 --- !u!114 &1784880961 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7729528788630165396, guid: cc0d6bd3aca3b5d4a986e27ce112e071, type: 3}
@@ -10852,7 +10836,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4490001428093800098, guid: 76e0d5cb8cba57243a80353595178209, type: 3}
       propertyPath: m_Name
-      value: hover statusdebugger txt
+      value: Hover Status
       objectReference: {fileID: 0}
     - target: {fileID: 6616345944692321249, guid: 76e0d5cb8cba57243a80353595178209, type: 3}
       propertyPath: m_Enabled
@@ -10958,6 +10942,9 @@ PrefabInstance:
       addedObject: {fileID: 952012595}
     - targetCorrespondingSourceObject: {fileID: 9010190734643779698, guid: 76e0d5cb8cba57243a80353595178209, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1515179846}
+    - targetCorrespondingSourceObject: {fileID: 9010190734643779698, guid: 76e0d5cb8cba57243a80353595178209, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 637677157}
     - targetCorrespondingSourceObject: {fileID: 9010190734643779698, guid: 76e0d5cb8cba57243a80353595178209, type: 3}
       insertIndex: -1
@@ -10971,9 +10958,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9010190734643779698, guid: 76e0d5cb8cba57243a80353595178209, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1532468602}
-    - targetCorrespondingSourceObject: {fileID: 9010190734643779698, guid: 76e0d5cb8cba57243a80353595178209, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1515179846}
     - targetCorrespondingSourceObject: {fileID: 9010190734643779698, guid: 76e0d5cb8cba57243a80353595178209, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1277323121}
@@ -11203,11 +11187,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3104411857632636852, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3104411857632636852, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3104411857632636852, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -11236,7 +11220,7 @@ PrefabInstance:
     - target: {fileID: 3104411857632636852, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 4373237222750262845}
+      objectReference: {fileID: 1160444129}
     - target: {fileID: 3104411857632636852, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -11248,7 +11232,7 @@ PrefabInstance:
     - target: {fileID: 3104411857632636852, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 4373237222750262845}
+      objectReference: {fileID: 1160444129}
     - target: {fileID: 3104411857632636852, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -11283,7 +11267,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3104411857632636852, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LeftRayExit
+      value: OnHoverExit
       objectReference: {fileID: 0}
     - target: {fileID: 3104411857632636852, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -11295,7 +11279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3104411857632636852, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LeftRayEnter
+      value: OnHoverEnter
       objectReference: {fileID: 0}
     - target: {fileID: 3104411857632636852, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -11307,7 +11291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3104411857632636852, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PalletRackObject, Assembly-CSharp
+      value: PR_RayInteractor, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3104411857632636852, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -11319,7 +11303,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3104411857632636852, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PalletRackObject, Assembly-CSharp
+      value: PR_RayInteractor, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3104411857632636852, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -11419,11 +11403,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7822482028367199063, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7822482028367199063, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7822482028367199063, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -11444,7 +11428,7 @@ PrefabInstance:
     - target: {fileID: 7822482028367199063, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 4373237222750262845}
+      objectReference: {fileID: 1757541373}
     - target: {fileID: 7822482028367199063, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -11452,7 +11436,7 @@ PrefabInstance:
     - target: {fileID: 7822482028367199063, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 4373237222750262845}
+      objectReference: {fileID: 1757541373}
     - target: {fileID: 7822482028367199063, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -11475,7 +11459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7822482028367199063, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RightRayExit
+      value: OnHoverExit
       objectReference: {fileID: 0}
     - target: {fileID: 7822482028367199063, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -11483,7 +11467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7822482028367199063, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RightRayEnter
+      value: OnHoverEnter
       objectReference: {fileID: 0}
     - target: {fileID: 7822482028367199063, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -11491,7 +11475,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7822482028367199063, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PalletRackObject, Assembly-CSharp
+      value: PR_RayInteractor, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7822482028367199063, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -11499,7 +11483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7822482028367199063, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PalletRackObject, Assembly-CSharp
+      value: PR_RayInteractor, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7822482028367199063, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -11507,7 +11491,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7822482028367199063, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: 
+      value: Hover Exit
       objectReference: {fileID: 0}
     - target: {fileID: 7822482028367199063, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
@@ -11515,7 +11499,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7822482028367199063, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: 
+      value: Hover Enter
       objectReference: {fileID: 0}
     - target: {fileID: 7822482028367199063, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
@@ -11715,17 +11699,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9010190734643779698, guid: 76e0d5cb8cba57243a80353595178209, type: 3}
   m_PrefabInstance: {fileID: 1963024242652557432}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4373237222750262845 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3363220902715077235, guid: 76e0d5cb8cba57243a80353595178209, type: 3}
-  m_PrefabInstance: {fileID: 1963024242652557432}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 786869677620814895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 365948136974e6f41810de9907483ec9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &5006512735865308539 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5013556786019211059, guid: d56cf1aacbea4704cac4d7983df1a0ad, type: 3}
