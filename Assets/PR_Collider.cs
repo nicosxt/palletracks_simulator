@@ -5,7 +5,7 @@ using TMPro;
 
 public class PR_Collider : MonoBehaviour
 {
-    //public PalletRackObject palletRackObject;
+    public PR_Object pr_Object;
     //public string attachmentStatus;//none, preview, attached
     public Transform attachmentPoint;
     // public GameObject previewObj, attachedObj;
@@ -14,16 +14,22 @@ public class PR_Collider : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    public void Init(PR_Object pr_Obj)
     {
         //attachmentStatus = "none";
-        attachmentPoint = transform.GetChild(0);
+        pr_Object = pr_Obj;
+        attachmentPoint = transform.parent;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void Retire(){
+        PR_Controller.i.prPreview.SetActive(false);
+        gameObject.SetActive(false);
     }
 
 }

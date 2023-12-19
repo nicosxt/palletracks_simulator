@@ -28,20 +28,22 @@ public class ReticleIndicator : MonoBehaviour
     {
         //this does not work because i think the ReticleIndicator object
         //gets deleted / disabled before this can be called
-        hintText.text = "Nope";
-        if(other.gameObject == PalletRackController.i.raycastingObjL)
-            PalletRackController.i.raycastingObjL = null;
-        if(other.gameObject == PalletRackController.i.raycastingObjR){
-            PalletRackController.i.raycastingObjR = null;
-        }
     }
 
+    //this works with OnHoverExit in PR_RayInteractor.cs
     private void OnTriggerStay(Collider other){
         hintText.text = "Stay" + other.name;
         //currentlyHovering = other.gameObject;
         if(name.Contains("Left"))
-            PalletRackController.i.raycastingObjL = other.gameObject;
+            PR_Controller.i.raycastingObjL = other.gameObject;
         else if(name.Contains("Right"))
-            PalletRackController.i.raycastingObjR = other.gameObject;
+            PR_Controller.i.raycastingObjR = other.gameObject;
+    }
+
+    void OnDisable(){
+        if(name.Contains("Left"))
+            PR_Controller.i.raycastingObjL = null;
+        else if(name.Contains("Right"))
+            PR_Controller.i.raycastingObjR = null;
     }
 }

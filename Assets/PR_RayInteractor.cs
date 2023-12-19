@@ -19,17 +19,12 @@ public class PR_RayInteractor : MonoBehaviour
     }
 
     public void OnHoverEnter(){
-        //this does not work for some reason
-        debugText.text = "ENTER " + PalletRackController.i.raycastingObjL.name;
-        //isStayingInObject = true;
+        //debugText.text = "ENTER " + PR_Controller.i.raycastingObjL.name;
     }
+
+    //this works with OnTriggerStay in ReticleIndicator.cs
     public void OnHoverExit(){
-        debugText.text = "EXIT " + PalletRackController.i.raycastingObjR.name;
-        //isStayingInObject = false;
-        if(direction == "L" && PalletRackController.i.raycastingObjL != null)
-            PalletRackController.i.raycastingObjL = null;
-        else if(direction == "R" && PalletRackController.i.raycastingObjR != null)
-            PalletRackController.i.raycastingObjR = null;
+        //debugText.text = "EXIT " + PR_Controller.i.raycastingObjR.name;
     }
 
     public void OnSelectEntering(){
