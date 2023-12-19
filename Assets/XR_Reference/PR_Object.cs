@@ -6,14 +6,13 @@ using TMPro;
 public class PR_Object : MonoBehaviour
 {
     public bool isOriginal = false;
+    public Transform followTransform;
     private float snapRotationInterval = 15f;
     private float snapScaleInterval = 0.2f;
     public TextMeshPro currentlyHoveringText;
     public List<PR_Collider> pr_Colliders = new List<PR_Collider>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         foreach(PR_Collider pr_Collider in pr_Colliders){
             pr_Collider.Init(this);
         }
@@ -30,6 +29,13 @@ public class PR_Object : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, SnapToInterval(transform.rotation.eulerAngles.y, snapRotationInterval), 0);
             //snap scale by 0.2
             transform.localScale = SnapToIntervalVec3(transform.localScale, snapScaleInterval);
+        }
+
+        if(followTransform != null && isOriginal){
+            transform.position = followTransform.position;
+            transform.rotation = followTransform.rotation;
+            //set the transform's scale offset to followTransform's scale offset
+            transform.localScale = followTransform.localScale;
         }
 
     }
@@ -52,6 +58,10 @@ public class PR_Object : MonoBehaviour
     }
 
     IEnumerator SelectionStartCoroutine(){
+
+        //log that coroutine is called
+        //PR_Controller.i.debugText.text += "selection coroutine\n" + gameObject.name;
+
         yield return new WaitForSeconds(0.5f);
         if(!selectionStart){
             PR_Controller.i.AddPR();

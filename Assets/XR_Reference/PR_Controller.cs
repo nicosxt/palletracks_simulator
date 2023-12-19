@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
+using TMPro;
 
 public class PR_Controller : MonoBehaviour
 {
@@ -22,11 +24,14 @@ public class PR_Controller : MonoBehaviour
     public GameObject hoveringPRCollider;
     private GameObject previousPRCollider;
     public PR_Collider hoveringPRColliderScript;
+
+    public TextMeshPro debugText;
     
     //public FadeMaterial fadeMaterialEnvironmentController;
     // Start is called before the first frame update
     void Start()
     {
+
         //fadeMaterialEnvironmentController.FadeSkybox(true);
         prPreview.SetActive(false);
     }
@@ -53,24 +58,38 @@ public class PR_Controller : MonoBehaviour
             }
             previousPRCollider = hoveringPRCollider;
         }
-        
+
+        //PrintColliders();
+
     }
 
     public void AddPR(){
         //check if currentPreviewPR is null
         if(prPreview.activeSelf){
 
+            //debugText.text += "AddPR!" + prKids.Count + "\n";
+
             //add a new palletrack at the location of currentPreviewPR
             GameObject newPR = Instantiate(prPrefab, prPreview.transform.position, prPreview.transform.rotation, prOriginal.transform);
             prKids.Add(newPR.GetComponent<PR_Object>());
-
-            // foreach(PR_Collider pr_Collider in newPR.GetComponent<PR_Object>().pr_Colliders){
-            //     prOriginal.GetComponent<XRBaseInteractable>().colliders.Add(pr_Collider.gameObject.GetComponent<Collider>());
-            // }
+            newPR.GetComponent<PR_Object>().isOriginal = false;
+            
             //retire the collider of currentPreviewPRCollider
             if(hoveringPRCollider && hoveringPRColliderScript)
-               hoveringPRColliderScript.Retire();
+               hoveringPRColliderScript.Retire(newPR.GetComponent<PR_Object>());
         }
+    }
+
+    void PrintColliders(){
+        if(prOriginal.GetComponent<XRGrabInteractable>()){
+            debugText.text = "COL: \n";
+            foreach(Collider collider in prOriginal.GetComponent<XRGrabInteractable>().colliders){
+                if(collider.GetComponent<PR_Collider>())
+                    debugText.text += collider.GetComponent<PR_Collider>().pr_Object.name + "\n";
+            }
+            Debug.Log(debugText.text);
+        }
+        
     }
 
     //check the state of rayInteractorL and rayInteractorR
